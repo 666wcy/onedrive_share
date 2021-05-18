@@ -9,7 +9,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - 'v*.*.*'
 
 
     #branches: [ master ]
@@ -17,7 +17,7 @@ on:
     branches:
       - main
     tags:
-      - 'v*'
+      - 'v*.*.*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -51,7 +51,8 @@ jobs:
         echo test, and deploy your project.
         docker run -v $GITHUB_WORKSPACE:/src cdrx/pyinstaller-windows:latest 'pyinstaller -F -i favicon.ico  --clean -y --dist ./ --workpath /tmp main.py'
         docker run -v $GITHUB_WORKSPACE:/src cdrx/pyinstaller-linux:latest 'pyinstaller -F --clean -y --dist ./ --workpath /tmp -w linux.py'
-        zip -r $GITHUB_WORKSPACE/onedrive_share_${{ env.RELEASE_VERSION }}.zip $GITHUB_WORKSPACE/main.exe   $GITHUB_WORKSPACE/linux.exe
+        tar -cvf $GITHUB_WORKSPACE/onedrive_share_${{ env.RELEASE_VERSION }}.zip $GITHUB_WORKSPACE/main.exe $GITHUB_WORKSPACE/linux.exe
+      #zip -r $GITHUB_WORKSPACE/onedrive_share_${{ env.RELEASE_VERSION }}.zip $GITHUB_WORKSPACE/main.exe $GITHUB_WORKSPACE/linux.exe
         
     - name: Create Release
       id: create_release
