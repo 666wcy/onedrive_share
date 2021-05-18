@@ -6,7 +6,8 @@ name: built
 # events but only for the master branch
 on:
   push:
-
+    branches:
+      - main
     tags:
       - 'v*'
 
@@ -32,11 +33,12 @@ jobs:
       id: extract_branch
 
     - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        
     - name: Test
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
+      run: |
+        echo $RELEASE_VERSION
+        echo ${{ env.RELEASE_VERSION }}
 
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
