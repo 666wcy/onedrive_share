@@ -16,8 +16,6 @@ qbittorrent==0.1.6
 requests==2.25.1
 rsa==4.7.2
 six==1.15.0
-Telethon==1.21.1
-TgCrypto==1.2.2
 toml==0.10.2
 urllib3==1.26.2
 websocket-client==1.0.0
