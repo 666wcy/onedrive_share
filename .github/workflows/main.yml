@@ -48,7 +48,7 @@ jobs:
           docker run -v $GITHUB_WORKSPACE:/src cdrx/pyinstaller-windows:latest 'pyinstaller -F -i favicon.ico  --clean -y --dist ./ --workpath /tmp main.py'
           docker run -v $GITHUB_WORKSPACE:/src cdrx/pyinstaller-linux:latest 'pyinstaller -F --clean -y --dist ./ --workpath /tmp -w linux.py'
 
-          tar -zcvf onedrive_share_${{ env.RELEASE_VERSION }}.zip -C $GITHUB_WORKSPACE/main.exe -C $GITHUB_WORKSPACE/linux
+          tar czf onedrive_share_${{ env.RELEASE_VERSION }}.zip -C $GITHUB_WORKSPACE/main.exe -C $GITHUB_WORKSPACE/linux
       #zip -r $GITHUB_WORKSPACE/onedrive_share_${{ env.RELEASE_VERSION }}.zip $GITHUB_WORKSPACE/main.exe $GITHUB_WORKSPACE/linux.exe
         
       - name: Create Release
